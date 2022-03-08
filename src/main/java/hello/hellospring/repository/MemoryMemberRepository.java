@@ -4,6 +4,8 @@ import hello.hellospring.domain.Member;
 
 import java.util.*;
 
+//저장소
+// interface는 좀 더 구현을 위한 저장 수단
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long,Member> store = new HashMap<>();
@@ -31,7 +33,7 @@ public class MemoryMemberRepository implements MemberRepository {
 
     @Override
     public List<Member> findAll() {
-        return new ArrayList<>(store.values() );
+        return new ArrayList<>(store.values());
     }
 
     public  void clearStore(){
