@@ -11,15 +11,14 @@ import java.util.Optional;
 
 //ctrl+ shift + T = testCase
 //서비스는 비지니스 로직
-@Service
 public class MemberService {
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
-      private final MemoryMemberRepository memberRepository;
+      private final MemberRepository memberRepository;
     //Autowired가 있으면 어?? 넌 Repository가 필요하네 하면서 스프링이 넣어줍니다.
-    @Autowired
-    public MemberService(MemoryMemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
+
 
     public Long join(Member member){
 

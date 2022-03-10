@@ -9,7 +9,6 @@ import java.util.*;
 // 컨트롤러로 외부 요청을 받고 서비스에서 비지니스 로직을 만들고,리포지토리에서 데이터를 저장하는 것 -> 정형화된 패턴
 //저장소
 // interface는 좀 더 구현을 위한 저장 수단
-@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long,Member> store = new HashMap<>();
