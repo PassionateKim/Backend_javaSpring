@@ -2,12 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>안녕하세요</title>
+    <title>Home</title>
+    <style>
+        img {
+            width:30%;
+        }
+    </style>
 </head>
 <body>
-Hello World!!
-<p class="editor-note">My cat is <strong>very</strong> grumpy</p>
-<input type="text">
-<a href=http://www.naver.com/>클릭 시 네이버로 연결됩니다.</a>
+    <img width="200px" height="300px;" src="img.png" alt="src없을 때 나오는 부분"/><br/>
+    <video
+            controls
+            width="400px" height="400px;"
+            src="sample_video.mp4"></video><br/>
+
+    <span>인라인</span>
+    <div>블록</div>
+    <h1>안녕하세요</h1>
+    <h2>안녕하세요</h2>
+    <h3>안녕하세요</h3>
+
+    <p>
+        <b>bold</b><br/>
+        <strong>bold + 중요</strong><br/>
+        <i>기울임</i><br/>
+        <em>기울임+중요</em><br/>
+        <ins>밑줄</ins><br/>
+        <del>취소선</del><br/>
+        <q>짧은 인용문</q><br/>
+        <blockquote>긴 인용문</blockquote><br/>
+    </p>
+
+    <ol>
+        <li>청소하기</li>
+        <li>빨래하기</li>
+    </ol>
+
+    <a href="http://naver.com">네이버로 이동하기</a>
+
+    <ul>
+        <li><a href="#first">1단원</a></li>
+        <li><a href="#second">2단원</a></li>
+        <li><a href="#third">3단원</a></li>
+    </ul>
+
+    <div id="first">1단원 본문</div>
+    <div id="second">2단원 본문</div>
+    <div id="third">3단원 본문</div>
+    <a href="#top">맨 위로 가기</a>
+
+    <form>
+        <label for="name">이름</label>
+        <input type="text" id="name" placeholder="이름"/>
+        <input type="email" placeholder="이메일"/>
+        <input type="password" placeholder="패스워드"/>
+        <input type="submit" placeholder="회원가입"/>
+    </form>
+
+    <label for="man">남</label>
+    <input id="man" type="radio" name="gender"/>
+    <label for="woman">여</label>
+    <input id="woman" type="radio" name="gender"/>
+
+
 </body>
 </html>
