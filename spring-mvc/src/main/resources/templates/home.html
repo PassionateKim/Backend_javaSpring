@@ -3,14 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        img {
-            width:30%;
+        a {
+            color: pink;
+            background-color:black;
         }
+        a:hover{
+            background-color:darkred;
+            }
+
+            .children{
+                width: 50px;
+                height: 50px;
+                display: inline-block;
+                background-color: skyblue;
+            }
+
+            .parent div:first-child,
+            .parent div:last-child{
+                background-color: pink;
+            }
+            .parent div:nth-child(even){
+                background-color: blue;
+            }
+            .container{
+                display: grid;
+                grid-template-columns: repeat(auto-fill, 100px);
+                }
+            .container  div:nth-child(even){
+                width:  100px;
+                height: 100px;
+                background-color: green;
+            }
+            .container  div:nth-child(odd){
+                width:  100px;
+                height: 100px;
+                background-color: red;
+            }
     </style>
 </head>
 <body>
-    <img width="200px" height="300px;" src="img.png" alt="src없을 때 나오는 부분"/><br/>
+    <img width="100px" height="200px;" src="img.png" alt="src없을 때 나오는 부분"/><br/>
     <video
             controls
             width="400px" height="400px;"
@@ -22,6 +56,26 @@
     <h2>안녕하세요</h2>
     <h3>안녕하세요</h3>
 
+    <div class="container">
+        <div class="item box1">1</div>
+        <div class="item box1">2</div>
+        <div class="item box1">3</div>
+        <div class="item box1">4</div>
+        <div class="item box1">5</div>
+        <div class="item box1">6</div>
+        <div class="item box1">7</div>
+        <div class="item box1">8</div>
+        <div class="item box1">9</div>
+        <div class="item box1">10</div>
+    </div>
+
+    <div class="parent">
+        <div class="children">1</div>
+        <div class="children">2</div>
+        <div class="children">3</div>
+        <div class="children">4</div>
+        <div class="children">5</div>
+    </div>
     <p>
         <b>bold</b><br/>
         <strong>bold + 중요</strong><br/>
@@ -34,7 +88,7 @@
     </p>
 
     <ol>
-        <li>청소하기</li>
+        <li class="blue">청소하기</li>
         <li>빨래하기</li>
     </ol>
 
