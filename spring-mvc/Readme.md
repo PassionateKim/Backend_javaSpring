@@ -4,5 +4,5 @@
 
 ### 목차
 스프링MVC 강의 정리</br>
-[1. 웹 애플리케이션 이해](https://abcdefgh123123.tistory.com/374)
-
+* [1. 웹 애플리케이션 이해](https://abcdefgh123123.tistory.com/374)
+* [2. 서블릿](https://abcdefgh123123.tistory.com/383)
