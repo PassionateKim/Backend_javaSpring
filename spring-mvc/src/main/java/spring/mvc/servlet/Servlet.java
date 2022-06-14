@@ -25,8 +25,8 @@ public class Servlet extends HttpServlet {
         writer.println("<body>");
         writer.println("    <div>1. url에 get 방식으로 데이터 전달하기 /get-request</div>");
         writer.println("    <div>2. Post 방식으로 바디에 JSON 데이터 전달하기 /request-body-json</div>");
-        writer.println("    <div>3. JSON 데이터 뿌리기 /response-json</div>");
-
+        writer.println("    <div>3. JSON 데이터 뿌리기 /response-json</div></br>");
+        writer.println("    <div><a href=\"basic/servlet-exam.html\">4. 서블릿으로 회원 저장 조회 실습하기</a></div>");
         writer.println("</body>");
         writer.println("</html>");
     }
