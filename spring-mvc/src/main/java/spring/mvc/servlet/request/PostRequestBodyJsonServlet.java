@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-@WebServlet(name = "getRequestBodyJsonServlet", urlPatterns = "/request-body-json")
-public class GetRequestBodyJsonServlet extends HttpServlet {
+@WebServlet(name = "postRequestBodyJsonServlet", urlPatterns = "/request-body-json")
+public class PostRequestBodyJsonServlet extends HttpServlet {
 
     private ObjectMapper objectMapper = new ObjectMapper();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("GetRequestBodyJsonServlet.service");
+        System.out.println("PostRequestBodyJsonServlet.service");
 
         ServletInputStream inputStream = req.getInputStream();
         String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
