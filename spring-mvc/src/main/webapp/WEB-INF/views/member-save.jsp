@@ -1,15 +1,4 @@
-<%@ page import="spring.mvc.basic.MemberRepository" %>
-<%@ page import="spring.mvc.basic.Member" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-// request, response 사용 가능
- MemberRepository memberRepository = MemberRepository.getInstance();
- System.out.println("member-save.jsp");
- String name = request.getParameter("name");
- int age = Integer.parseInt(request.getParameter("age"));
- Member member = new Member(name, age);
- memberRepository.save(member);
-%>
 <html>
 <head>
  <meta charset="UTF-8">
@@ -17,9 +6,9 @@
 <body>
 성공
 <ul>
- <li>id=<%=member.getId()%></li>
- <li>name=<%=member.getName()%></li>
- <li>age=<%=member.getAge()%></li>
+ <li>id=${member.id}</li>
+ <li>name=${member.name}</li>
+ <li>age=${member.age}</li>
 </ul>
 <a href="/index.html">메인으로 돌아가기</a>
 </body>

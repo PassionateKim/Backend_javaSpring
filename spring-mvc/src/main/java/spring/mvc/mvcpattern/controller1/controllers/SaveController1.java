@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 public class SaveController1 implements Controller1 {
     private MemberRepository memberRepository = MemberRepository.getInstance();
@@ -22,6 +21,10 @@ public class SaveController1 implements Controller1 {
         Member member = new Member(name, age);
         memberRepository.save(member);
 
+        //Model에 데이터를 보관하기.
+        request.setAttribute("member", member);
+
+        //View로 넘기기
         String viewPath = "/WEB-INF/views/member-save.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
         dispatcher.forward(request, response);
