@@ -1,8 +1,8 @@
-package spring.mvc.mvcpattern.controller4.adapters;
+package spring.mvc.mvcpattern.controller5.adapters;
 
 import spring.mvc.mvcpattern.ModelView;
 import spring.mvc.mvcpattern.controller3.Controller3;
-import spring.mvc.mvcpattern.controller4.HandlerAdapter;
+import spring.mvc.mvcpattern.controller5.HandlerAdapter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

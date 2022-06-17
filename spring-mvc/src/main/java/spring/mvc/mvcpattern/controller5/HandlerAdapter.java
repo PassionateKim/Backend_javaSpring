@@ -1,4 +1,4 @@
-package spring.mvc.mvcpattern.controller4;
+package spring.mvc.mvcpattern.controller5;
 
 import spring.mvc.mvcpattern.ModelView;
 
