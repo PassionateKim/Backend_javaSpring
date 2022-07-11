@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 public class StructureMemberListController {
     private MemberRepository memberRepository = MemberRepository.getInstance();
-    @RequestMapping("/realmvc/structure_1/list")
+    @RequestMapping("/structure/list")
     public ModelAndView process() {
         List<Member> members = memberRepository.findAll();
         ModelAndView mv = new ModelAndView("member-list");

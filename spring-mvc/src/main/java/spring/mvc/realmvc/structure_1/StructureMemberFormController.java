@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class StructureMemberFormController{
-    @RequestMapping("/realmvc/structure_1/form")
+    @RequestMapping("/structure/form")
     public ModelAndView process() {
         System.out.println("StructureMemberFormController.process");
         return new ModelAndView("new-form");
