@@ -36,10 +36,10 @@ public class FrontController4 extends HttpServlet {
 
         // 알맞은 controller 꺼내기
         String requestURI = req.getRequestURI();
-        Controller4 controller5 = controllerMap.get(requestURI);
+        Controller4 controller4 = controllerMap.get(requestURI);
 
 
-        String viewName = controller5.logic(paramMap, model);
+        String viewName = controller4.logic(paramMap, model);
         ViewRenderer viewRenderer = viewResolver(viewName);
 
         // view 이동

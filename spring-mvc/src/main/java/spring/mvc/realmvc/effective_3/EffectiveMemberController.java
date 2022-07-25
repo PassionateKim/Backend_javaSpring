@@ -2,26 +2,25 @@ package spring.mvc.realmvc.effective_3;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import spring.mvc.basic.Member;
 import spring.mvc.basic.MemberRepository;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 @Controller
 @RequestMapping("/effective")
 public class EffectiveMemberController {
     private final MemberRepository memberRepository = MemberRepository.getInstance();
 
-    @RequestMapping("/form")
+    @GetMapping("/form")
     public String newForm() {
         return "new-form";
     }
 
-    @RequestMapping("/save")
+    @PostMapping("/save")
     public String save(
             @RequestParam("name") String name,
             @RequestParam("age") int age,
@@ -34,7 +33,7 @@ public class EffectiveMemberController {
         return "member-save";
     }
 
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public String members(Model model) {
         List<Member> members = memberRepository.findAll();
 

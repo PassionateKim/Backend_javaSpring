@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>요청</title>
+</head>
+<body>
+<div>
+    <a href="/request-mapping-get">1. HTTP 메서드 매핑</a>
+</div>
+
+<div>
+    <a href="/request-mapping-path/123">2. PathVariable 사용</a>
+</div>
+
+<div>
+    <a href="/request-mapping-header">3. 헤더 조회</a>
+</div>
+
+<div>
+    4. 쿼리 파라미터<br>
+    url: http://localhost:9090/request-mapping-param?membername=%22kim%22&age=25
+
+</div>
+<br>
+<div>
+    5. 모델 어트리뷰트<br>
+    http://localhost:9090/request-mapping-model?name=%22kim%22&age=25
+    Postman 사용
+
+</div>
+<br>
+<div>
+    6. Json<br>
+    http://localhost:9090/request-mapping-json<br>
+    {"name":"kim", "age":"25"} - Postman 사용
+</div>
+</body>
+</html>
