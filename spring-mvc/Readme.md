@@ -13,3 +13,4 @@
 * [6. 스프링 HTTP 요청 받기](https://abcdefgh123123.tistory.com/442)
 * [7. 스프링 HTTP 응답 하기](https://abcdefgh123123.tistory.com/445)
 * [8. 타임리프](https://abcdefgh123123.tistory.com/449)
+* [9. 상품 상세, 등록, 수정](https://abcdefgh123123.tistory.com/452)
