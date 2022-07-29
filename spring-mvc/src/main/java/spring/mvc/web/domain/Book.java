@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class Book extends Item {
-    private String datatype;
+    private String dataType;
 
-    public Book(String itemName, Integer price, Integer quantity, String datatype) {
+    public Book(String itemName, Integer price, Integer quantity, String dataType) {
         super(itemName, price, quantity);
-        this.datatype = datatype;
+        this.dataType = dataType;
     }
 
 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.css}"
+          href="../css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<!--상부 컨테이너-->
+<div class="container" style="max-width: 600px">
+    <div class="py-3 bg-primary text-center text-white">
+        <h2>Steady Kim Shop</h2>
+    </div>
+
+    <div class="py-2 text-center">
+        <h3>상품 상세 </h3>
+    </div>
+    <!-- 상품 상세 내용-->
+    <div class="text-center" >
+        <label class="bg-secondary text-white" for="itemId" style="width: 300px">상품 ID</label>
+        <p id="itemId" name="itemId" th:text="${item.id}">1</p>
+
+        <label class="bg-secondary text-white" for="itemName" style="width: 300px">상품 이름</label>
+        <p id="itemName" name="itemName" th:text="${item.itemName}">itemName</p>
+
+        <label class="bg-secondary text-white" for="dataType" style="width: 300px">품목</label>
+        <p id="dataType" name="dataType" th:text="${item.dataType}">품목</p>
+
+        <label class="bg-secondary text-white" for="itemPrice" style="width: 300px">가격</label>
+        <p id="itemPrice" name="itemPrice" th:text="${item.price}">1</p>
+
+        <label class="bg-secondary text-white" for="itemQuantity" style="width: 300px">수량</label>
+        <p id="itemQuantity" name="itemQuantity" th:text="${item.quantity}">수량</p>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col text-center">
+            <button class="w-50 btn btn-primary btn-lg"
+                    th:onclick="|location.href='@{/basic/items/{itemId}/edit(itemId=${item.id})}'|"
+                    type="button">상품 수정</button>
+        </div>
+        <div class="col">
+            <button class="w-50 btn btn-secondary btn-lg"
+                    th:onclick="|location.href='@{/basic/items}'|"
+                    type="button">목록으로</button>
+        </div>
+    </div>
+</div> <!--/container -->
+</body>
+</html>
