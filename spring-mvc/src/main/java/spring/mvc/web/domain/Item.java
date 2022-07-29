@@ -3,7 +3,7 @@ package spring.mvc.web.domain;
 import lombok.Data;
 
 @Data
-abstract public class Item {
+public class Item {
     private long id;
     private String itemName;
     private Integer price;

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.css}"
+          href="../css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<!--상부 컨테이너-->
+<div class="container" style="max-width: 600px">
+    <div class="py-3 bg-primary text-center text-white">
+        <h2>Steady Kim Shop</h2>
+    </div>
+
+    <div class="py-2 text-center">
+        <h3>상품 등록 </h3>
+    </div>
+
+    <!-- 상품 상세 내용-->
+    <div class="text-center">
+        <h5 class="mb-3">상품 입력</h5>
+        <form th:action method="post">
+            <div class="my-3">
+                <label form="itemName">상품명</label>
+                <input type="text" id="itemName" name="itemName" placeholder="이름을 입력하세요">
+            </div>
+            <div class="my-3">
+                <label form="price">가격</label>
+                <input type="text" id="price" name="price" placeholder="가격을 입력하세요">
+            </div>
+            <div class="my-3">
+                <label form="quantity">수량</label>
+                <input type="text" id="quantity" name="quantity" placeholder="수량을 입력하세요">
+            </div>
+
+            <hr class="my-4">
+            <div class="row">
+                <div class="col text-center">
+                    <button class="w-50 btn btn-primary btn-lg"
+                            th:onclick="|location.href='@{/basic/items/add)}'|"
+                            type="submit">상품 등록</button>
+                </div>
+                <div class="col text-center">
+                    <button class="w-50 btn btn-secondary btn-lg"
+                            th:onclick="|location.href='@{/basic/items}'|"
+                            type="button">취소</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> <!--/container -->
+</body>
+</html>
