@@ -75,6 +75,7 @@ public class BasicItemController {
     public String addItem(@RequestParam("itemName") String itemName,
                           @RequestParam("price") Integer itemPrice,
                           @RequestParam("quantity") Integer itemQuantity,
+                          Model model,
                           RedirectAttributes redirectAttributes) {
 
         Book book = new Book(itemName, itemPrice, itemQuantity, ItemName.BOOK);
@@ -87,10 +88,40 @@ public class BasicItemController {
     }
 
     /**
+     * 상품 수정 폼
+     */
+    @GetMapping("/{itemId}/edit")
+    public String editForm(@PathVariable("itemId") long id, Model model) {
+        Item foundItem = itemRepository.findById(id);
+
+        model.addAttribute("item", foundItem);
+        return "basic/editForm";
+    }
+
+    /**
+     * 상품 수정
+     */
+    @PostMapping("/{itemId}/edit")
+    public String edit(@PathVariable("itemId") long itemId,
+                       @RequestParam("itemName") String itemName,
+                       @RequestParam("price") Integer itemPrice,
+                       @RequestParam("quantity") Integer itemQuantity,
+                       Model model) {
+
+
+        Book book = new Book(itemName, itemPrice, itemQuantity, ItemName.BOOK);
+
+        itemRepository.update(itemId, book);
+
+        return "redirect:/basic/items/{itemId}";
+    }
+
+    /**
      * 테스트용 데이터 추가
      */
     @PostConstruct
     public void init() {
+
         itemRepository.save(new Book("BookA", 10000, 10, ItemName.BOOK));
         itemRepository.save(new Book("BookB", 20000, 20, ItemName.BOOK));
         itemRepository.save(new Book("BookC", 30000, 30, ItemName.BOOK));
