@@ -4,3 +4,5 @@
   * [스프링 MVC 1편 백엔드 웹 개발 핵심 기술 - 인프런 김영한님 강의](https://github.com/SteadyKim/Backend/tree/master/spring-mvc)
 * **Java**
   * [자바](https://github.com/SteadyKim/Backend/tree/master/Java)
+* **JPA**
+  * [자바 ORM 표준 JPA 프로그래밍 - 인프런 김영한님 강의](https://github.com/SteadyKim/Backend/tree/master/ORM%20%ED%91%9C%EC%A4%80%20JPA%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)
