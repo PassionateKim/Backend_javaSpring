@@ -6,3 +6,4 @@
 자바 ORM 표준 JPA 프로그래밍</br>
 * [1. 영속성 컨텍스트](https://abcdefgh123123.tistory.com/465)
 * [2. 연관관계의 주인](https://abcdefgh123123.tistory.com/472)
+* [3. 기본 값 타입과 임베디드 타입](https://abcdefgh123123.tistory.com/478)
