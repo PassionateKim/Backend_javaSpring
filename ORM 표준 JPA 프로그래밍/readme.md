@@ -7,3 +7,4 @@
 * [1. 영속성 컨텍스트](https://abcdefgh123123.tistory.com/465)
 * [2. 연관관계의 주인](https://abcdefgh123123.tistory.com/472)
 * [3. 기본 값 타입과 임베디드 타입](https://abcdefgh123123.tistory.com/478)
+* [4. 값 타입 컬렉션](https://abcdefgh123123.tistory.com/479)
