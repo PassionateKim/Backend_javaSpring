@@ -2,6 +2,11 @@
 김영한님 자바 ORM 표준 JPA 프로그래밍 강의 듣고 정리</br>
 코드는 강의를 활용해 직접 적용해본 코드임
 
+#### ERD 설계
+<img src="https://user-images.githubusercontent.com/88755733/186112977-68ba50da-6e4b-4a73-8a58-cd7ff961ff01.png" width="60%">
+
+
+
 ### 목차
 자바 ORM 표준 JPA 프로그래밍</br>
 * [1. 영속성 컨텍스트](https://abcdefgh123123.tistory.com/465)
