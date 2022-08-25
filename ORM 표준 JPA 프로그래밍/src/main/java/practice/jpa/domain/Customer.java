@@ -1,5 +1,6 @@
 package practice.jpa.domain;
 
+import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Setter
+@Setter @Getter
 public class Customer {
     @Id @GeneratedValue
     @Column(name = "CUSTOMER_ID")
