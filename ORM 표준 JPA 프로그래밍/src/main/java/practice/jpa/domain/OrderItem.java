@@ -23,7 +23,33 @@ public class OrderItem {
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
+    protected OrderItem(){
+    }
     private int orderPrice;
 
     private int count;
+
+
+    /**
+     * 생성 로직
+     */
+    public static OrderItem createOrderItem(Item item, int price, int count){
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setOrderPrice(price);
+        orderItem.setCount(count);
+
+        item.removeQuantity(count);
+        return orderItem;
+    }
+
+    public void cancel() {
+        getItem().addQuantity(count);
+    }
+
+    // 조회로직
+    public int getTotalPrice() {
+        return orderPrice * count;
+    }
+
 }
