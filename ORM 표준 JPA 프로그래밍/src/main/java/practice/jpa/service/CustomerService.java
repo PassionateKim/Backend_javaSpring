@@ -20,6 +20,7 @@ public class CustomerService {
     /**
      * 회원가입
      */
+    @Transactional
     public Long join(Customer customer){
         validateCustomer(customer);
         customerRepository.save(customer);
