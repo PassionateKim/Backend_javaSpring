@@ -13,6 +13,7 @@ import practice.jpa.domain.Customer;
 import practice.jpa.service.CustomerService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,13 +26,13 @@ public class CustomerController {
     public String signUpForm(Model model){
         model.addAttribute("customerForm", new CustomerForm());
 
-        return "customers/signUpForm";
+        return "customers/createCustomerForm";
     }
 
     @PostMapping("/customers/new")
     public String signUp(@Valid CustomerForm customerForm, BindingResult result){
         if(result.hasErrors()){
-            return "customers/signUpForm";
+            return "customers/createCustomerForm";
         }
 
         //address 생성
@@ -46,5 +47,13 @@ public class CustomerController {
         customerService.join(customer);
 
         return "redirect:/";
+    }
+
+    @GetMapping("/customers")
+    public String list(Model model){
+        List<Customer> customers = customerService.findCustomers();
+        model.addAttribute("customers", customers);
+
+        return "customers/customerList";
     }
 }

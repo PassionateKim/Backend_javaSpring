@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>customerList</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th>
+                <th>도</th>
+                <th>동</th>
+                <th>도로</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.name}">이름</td>
+                <td th:text="${customer.address?.palDo}">도</td>
+                <td th:text="${customer.address?.dong}">동</td>
+                <td th:text="${customer.address?.street}">도로</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
