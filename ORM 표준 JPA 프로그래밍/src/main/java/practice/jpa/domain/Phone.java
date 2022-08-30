@@ -9,7 +9,15 @@ import javax.persistence.Id;
 
 @Entity
 @Setter @Getter
-public class Phone extends Item{
+public class Phone extends Item {
 
     private String company;
+
+    public Phone() {
+    }
+
+    public Phone(String name, int price, int stockQuantity, String company) {
+        super(name, price, stockQuantity);
+        this.company = company;
+    }
 }

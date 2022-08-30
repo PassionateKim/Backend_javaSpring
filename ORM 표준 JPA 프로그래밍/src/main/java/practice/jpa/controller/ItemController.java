@@ -1,0 +1,54 @@
+package practice.jpa.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import practice.jpa.domain.Item;
+import practice.jpa.domain.Phone;
+import practice.jpa.service.ItemService;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@Controller
+@RequiredArgsConstructor
+public class ItemController {
+    @Autowired
+    private final ItemService itemService;
+
+    @GetMapping("/items/new")
+    public String createPhoneForm(Model model){
+        PhoneForm phoneForm = new PhoneForm();
+        model.addAttribute("phoneForm", phoneForm);
+
+        return "items/createItemForm";
+    }
+
+    @PostMapping("/items/new")
+    public String phoneForm(@Valid PhoneForm phoneForm, BindingResult result){
+        if(result.hasErrors()){
+            return "items/createItemForm";
+        }
+        // 생성자를 통한 설계
+        Phone phone = new Phone(phoneForm.getName(),
+                phoneForm.getPrice(),
+                phoneForm.getStockQuantity(),
+                phoneForm.getCompany());
+
+        itemService.saveItem(phone);
+
+        return "redirect:/items";
+    }
+
+    @GetMapping("/items")
+    public String list(Model model){
+        List<Item> items = itemService.findItems();
+        model.addAttribute("items", items);
+
+        return "items/itemList";
+    }
+}

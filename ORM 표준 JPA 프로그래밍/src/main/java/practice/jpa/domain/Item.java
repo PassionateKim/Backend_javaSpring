@@ -20,6 +20,14 @@ public abstract class Item {
 
     private int stockQuantity;
 
+    public Item() {
+    }
+
+    public Item(String name, int price, int stockQuantity) {
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+    }
     //==비지니스 로직==//
 
     /**
