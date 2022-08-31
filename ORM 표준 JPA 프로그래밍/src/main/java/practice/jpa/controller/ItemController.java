@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import practice.jpa.domain.Item;
 import practice.jpa.domain.Phone;
@@ -50,5 +52,33 @@ public class ItemController {
         model.addAttribute("items", items);
 
         return "items/itemList";
+    }
+
+    @GetMapping("items/{itemId}/edit")
+    public String updateItemForm(@PathVariable("itemId") Long itemId, Model model){
+        Phone phone = (Phone)itemService.findOne(itemId);
+        PhoneForm phoneForm = new PhoneForm();
+        phoneForm.setId(phone.getId());
+        phoneForm.setName(phone.getName());
+        phoneForm.setPrice(phone.getPrice());
+        phoneForm.setStockQuantity(phone.getStockQuantity());
+        phoneForm.setCompany(phone.getCompany());
+
+        model.addAttribute("form", phoneForm);
+        return "items/updateItemForm";
+    }
+
+    @PostMapping("items/{itemId}/edit")
+    public String updateItem(@ModelAttribute("form") PhoneForm phoneForm){
+        Phone phone = new Phone();
+        phone.setId(phoneForm.getId());
+        phone.setName(phoneForm.getName());
+        phone.setPrice(phoneForm.getPrice());
+        phone.setStockQuantity(phoneForm.getStockQuantity());
+        phone.setCompany(phoneForm.getCompany());
+
+        itemService.saveItem(phone);
+
+        return "redirect:/items";
     }
 }

@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter @Setter
 public class PhoneForm {
+    private Long id;
 
     @NotEmpty(message = "이름을 입력해주세요")
     private String name;
