@@ -69,15 +69,12 @@ public class ItemController {
     }
 
     @PostMapping("items/{itemId}/edit")
-    public String updateItem(@ModelAttribute("form") PhoneForm phoneForm){
-        Phone phone = new Phone();
-        phone.setId(phoneForm.getId());
-        phone.setName(phoneForm.getName());
-        phone.setPrice(phoneForm.getPrice());
-        phone.setStockQuantity(phoneForm.getStockQuantity());
-        phone.setCompany(phoneForm.getCompany());
+    public String updateItem(@PathVariable Long itemId, @ModelAttribute("form") @Valid PhoneForm form, BindingResult result){
+        if(result.hasErrors()){
+            return "items/updateItemForm";
+        }
 
-        itemService.saveItem(phone);
+        itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity(), form.getCompany());
 
         return "redirect:/items";
     }

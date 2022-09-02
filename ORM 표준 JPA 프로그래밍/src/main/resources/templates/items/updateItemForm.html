@@ -1,6 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header" />
+<style>
+ .fieldError {
+ border-color: #bd2130;
+ }
+</style>
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
@@ -10,7 +15,11 @@
         <div class="form-group">
             <label th:for="name">상품명</label>
             <input type="text" th:field="*{name}" class="form-control"
-                   placeholder="이름을 입력하세요" />
+                   placeholder="이름을 입력하세요"
+            th:class="${#fields.hasErrors('name')}? 'form-control
+            fieldError' : 'form-control'"/>
+            <p th:if="${#fields.hasErrors('name')}"
+               th:errors="*{name}">이름을 입력해주세요</p>
         </div>
         <div class="form-group">
             <label th:for="price">가격</label>
@@ -25,7 +34,11 @@ control" placeholder="수량을 입력하세요" />
         <div class="form-group">
             <label th:for="company">회사</label>
             <input type="text" th:field="*{company}" class="form-control"
-                   placeholder="회사를 입력하세요" />
+                   placeholder="회사를 입력하세요"
+            th:class="${#fields.hasErrors('company')}? 'form-control
+            fieldError' : 'form-control'"/>
+            <p thLif="${#fields.hasErrors('company')}"
+               th:errors="*{company}">Incorrect</p>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
