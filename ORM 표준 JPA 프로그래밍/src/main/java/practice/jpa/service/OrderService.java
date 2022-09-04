@@ -12,6 +12,8 @@ import practice.jpa.repository.CustomerRepository;
 import practice.jpa.repository.ItemRepository;
 import practice.jpa.repository.OrderRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -43,5 +45,9 @@ public class OrderService {
     public void cancelOrder(Long orderId){
         Order order = orderRepository.findOne(orderId);
         order.cancel();
+    }
+
+    public List<Order> findOrders() {
+        return orderRepository.findAll();
     }
 }
