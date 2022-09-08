@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import practice.jpa.domain.Address;
 import practice.jpa.domain.Customer;
 import practice.jpa.repository.CustomerRepository;
 
@@ -51,5 +52,15 @@ public class CustomerService {
      */
     public Customer findOne(Long id){
         return customerRepository.findOne(id);
+    }
+
+    /**
+     * Update by 변경감지
+     */
+    @Transactional
+    public void update(Long customerId, String name, Address address) {
+        Customer findCustomer = customerRepository.findOne(customerId);
+        findCustomer.setName(name);
+        findCustomer.setAddress(address);
     }
 }
