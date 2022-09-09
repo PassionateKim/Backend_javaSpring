@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import practice.jpa.domain.Address;
 import practice.jpa.domain.Customer;
 import practice.jpa.dto.CreateCustomerDto;
+import practice.jpa.dto.CustomerDto;
 import practice.jpa.dto.UpdateCustomerDto;
 import practice.jpa.service.CustomerService;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RestController
@@ -34,6 +37,23 @@ public class CustomerApiController {
         Customer findCustomer = customerService.findOne(customerId);
 
         return new UpdateCustomerResponse(findCustomer.getId(), findCustomer.getName(), findCustomer.getAddress());
+    }
+
+    @GetMapping("/api/customers")
+    public CustomerListResponse customerList(){
+        List<Customer> customers = customerService.findCustomers();
+        List<CustomerDto> customerNameList = customers.stream()
+                .map(s -> new CustomerDto(s.getName()))
+                .collect(Collectors.toList());
+
+        return new CustomerListResponse(customerNameList.size(), customerNameList);
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class CustomerListResponse<T>{
+        private int size;
+        private T customer_names;
     }
 
     @Data
