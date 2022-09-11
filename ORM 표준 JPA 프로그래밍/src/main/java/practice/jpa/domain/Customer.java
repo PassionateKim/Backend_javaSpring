@@ -1,5 +1,6 @@
 package practice.jpa.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,7 @@ public class Customer {
     private Address address;
 
     @OneToMany(mappedBy = "customer")
+    @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
 }
