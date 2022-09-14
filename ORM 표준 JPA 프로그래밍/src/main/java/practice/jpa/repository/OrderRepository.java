@@ -36,4 +36,10 @@ public class OrderRepository {
         return em.createQuery("select o from Order o", Order.class)
                 .getResultList();
     }
+
+    public List<Order> findAllByFetchJoin() {
+        return em.createQuery("select o from Order o"
+        + " join fetch o.customer c"
+        , Order.class).getResultList();
+    }
 }
