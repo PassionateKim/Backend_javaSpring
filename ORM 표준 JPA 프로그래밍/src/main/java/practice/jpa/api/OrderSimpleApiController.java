@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import practice.jpa.domain.Order;
-import practice.jpa.dto.OrderDto;
+import practice.jpa.dto.OrderSimpleDto;
 import practice.jpa.repository.OrderRepository;
 
 import java.util.List;
@@ -27,8 +27,8 @@ public class OrderSimpleApiController {
     @GetMapping("/api/simple-orders2")
     public OrderResult orderList2(){
         List<Order> orderList = orderRepository.findAll();
-        List<OrderDto> orderDtoList = orderList.stream()
-                .map(o -> new OrderDto(o))
+        List<OrderSimpleDto> orderDtoList = orderList.stream()
+                .map(o -> new OrderSimpleDto(o))
                 .collect(Collectors.toList());
 
         return new OrderResult(orderDtoList);
@@ -37,8 +37,8 @@ public class OrderSimpleApiController {
     @GetMapping("/api/simple-orders3")
     public OrderResult orderList3(){
         List<Order> orderList = orderRepository.findAllByFetchJoin();
-        List<OrderDto> orderDtoList = orderList.stream()
-                .map(o -> new OrderDto(o))
+        List<OrderSimpleDto> orderDtoList = orderList.stream()
+                .map(o -> new OrderSimpleDto(o))
                 .collect(Collectors.toList());
 
         return new OrderResult(orderDtoList);
@@ -47,7 +47,7 @@ public class OrderSimpleApiController {
     @Data
     @AllArgsConstructor
     static class OrderResult<T>{
-        private T orderDto;
+        private T orderSimpleDto;
     }
 
 }
