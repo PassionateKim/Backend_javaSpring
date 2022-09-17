@@ -43,6 +43,17 @@ public class OrderApiController {
         return new Result(orderDtoList);
     }
 
+    @GetMapping("/api/orders3")
+    public Result orders3(){
+        List<Order> orderList = orderRepository.findAllByFetchOrders();
+        orderList.stream()
+                .map(o -> new OrderDto(o))
+                .collect(Collectors.toList());
+
+        return new Result(orderList);
+    }
+
+
     @Data
     @AllArgsConstructor
     public class Result<T>{
