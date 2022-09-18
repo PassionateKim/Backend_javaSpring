@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import practice.jpa.domain.Order;
 import practice.jpa.domain.OrderItem;
 import practice.jpa.dto.OrderDto;
+import practice.jpa.dto.query.OrderQueryDto;
+import practice.jpa.dto.query.OrderQueryItemDto;
 import practice.jpa.repository.OrderRepository;
+import practice.jpa.repository.query.OrderQueryRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderApiController {
     private final OrderRepository orderRepository;
+    private final OrderQueryRepository orderQueryRepository;
 
     @GetMapping("/api/orders1")
     public List<Order> orders1(){
@@ -69,6 +73,16 @@ public class OrderApiController {
         return new Result(orderDtoList);
     }
 
+    /**
+     *직접 DTO 조회
+     */
+    @GetMapping("/api/orders5")
+    public Result orders5(){
+        List<OrderQueryDto> orders = orderQueryRepository.findAllByDirectQuery();
+
+
+        return new Result(orders);
+    }
 
     @Data
     @AllArgsConstructor
