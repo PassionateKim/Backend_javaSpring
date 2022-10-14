@@ -7,6 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
+
 
 @RequiredArgsConstructor
 @Service
@@ -14,11 +16,14 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
+    private final HttpSession httpSession;
 
     @Transactional
     public Long join(SessionUser sessionUser) {
         /* 암호화 */
         sessionUser.encodePassword(encoder.encode(sessionUser.getPassword()));
+
+
         return userRepository.save(sessionUser.toEntity()).getId();
     }
 }

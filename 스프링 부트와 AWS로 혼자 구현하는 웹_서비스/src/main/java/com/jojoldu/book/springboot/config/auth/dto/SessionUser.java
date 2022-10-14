@@ -14,6 +14,7 @@ public class SessionUser implements Serializable {
     private String email;
     private String picture;
     private String password;
+    private String number;
 
     public SessionUser() {
     }
@@ -24,6 +25,7 @@ public class SessionUser implements Serializable {
         this.email = user.getEmail();
         this.picture = user.getPicture();
         this.password = user.getPassword();
+        this.number = user.getNumber();
     }
 
     public void encodePassword(String encode) {
@@ -36,6 +38,7 @@ public class SessionUser implements Serializable {
                 .email(email)
                 .picture(picture)
                 .password(password)
+                .number(number)
                 .role(Role.GUEST)
                 .build();
     }

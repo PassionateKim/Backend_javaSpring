@@ -13,17 +13,21 @@ public class OAuthAttributes {
     private String nameAttributeKey;
     private String name;
     private String email;
+    private String password;
+    private String number;
     private String picture;
 
     @Builder
     public OAuthAttributes(Map<String, Object> attributes,
                            String nameAttributeKey, String name,
-                           String email, String picture) {
+                           String email, String picture, String password, String number) {
 
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
         this.name = name;
         this.email = email;
+        this.number = number;
+        this.password = password;
         this.picture = picture;
     }
 
@@ -36,11 +40,16 @@ public class OAuthAttributes {
 
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+        for (String s : response.keySet()) {
+            System.out.println("key: " + s + " value: " + response.get(s) );
 
+        }
         return OAuthAttributes.builder()
                 .name((String) response.get("name"))
                 .email((String) response.get("email"))
                 .picture((String) response.get("profile_image"))
+                .password((String) response.get("password"))
+                .number((String) response.get("mobile"))
                 .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
@@ -48,6 +57,9 @@ public class OAuthAttributes {
     }
 
     private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
+        for (String s : attributes.keySet()) {
+            System.out.println("key: " + s + " value: " + attributes.get(s));
+        }
         return OAuthAttributes.builder()
                 .name((String) attributes.get("name"))
                 .email((String) attributes.get("email"))
@@ -62,6 +74,8 @@ public class OAuthAttributes {
                 .name(name)
                 .email(email)
                 .picture(picture)
+                .number(number)
+                .password(password)
                 .role(Role.GUEST)
                 .build();
     }
