@@ -19,14 +19,14 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private String email;
+    @Column
+    private String naverId;
+
+    @Column
+    private String googleId;
 
     @Column
     private String password;
-
-    @Column
-    private String picture;
 
     @Column
     private String number;
@@ -38,18 +38,17 @@ public class User extends BaseTimeEntity {
     private Role role;
 
     @Builder
-    public User(String name, String email, String picture, Role role, String password, String number) {
+    public User(String name, String naverId, String googleId, Role role, String password, String number) {
         this.name = name;
-        this.email = email;
-        this.picture = picture;
+        this.naverId = naverId;
+        this.googleId = googleId;
         this.role = role;
         this.password = password;
         this.number = number;
     }
 
-    public User update(String name, String picture) {
+    public User update(String name) {
         this.name = name;
-        this.picture = picture;
 
         return this;
     }

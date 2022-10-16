@@ -11,10 +11,11 @@ import java.io.Serializable;
 @Data
 public class SessionUser implements Serializable {
     private String name;
-    private String email;
-    private String picture;
+    private String naverId;
+    private String googleId;
     private String password;
     private String number;
+
 
     public SessionUser() {
     }
@@ -22,9 +23,9 @@ public class SessionUser implements Serializable {
     /*Entity -> Dto */
     public SessionUser(User user) {
         this.name = user.getName();
-        this.email = user.getEmail();
-        this.picture = user.getPicture();
         this.password = user.getPassword();
+        this.naverId = user.getNaverId();
+        this.googleId = user.getGoogleId();
         this.number = user.getNumber();
     }
 
@@ -35,8 +36,8 @@ public class SessionUser implements Serializable {
     public User toEntity() {
         return User.builder()
                 .name(name)
-                .email(email)
-                .picture(picture)
+                .naverId(naverId)
+                .googleId(googleId)
                 .password(password)
                 .number(number)
                 .role(Role.GUEST)
