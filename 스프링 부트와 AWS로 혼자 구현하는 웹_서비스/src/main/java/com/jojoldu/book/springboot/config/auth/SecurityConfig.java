@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomOAuth2UserService customOAuth2UserService;
-
+    private final CustomSuccessHandler customSuccessHandler;
     @Bean
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
@@ -21,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http
                 .csrf().disable()
                 .headers().frameOptions().disable()
@@ -34,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
                 .and()
                 .oauth2Login()
+                .successHandler(customSuccessHandler)
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
     }
