@@ -15,10 +15,11 @@ public class OAuthAttributes {
     private String naverId;
     private String name;
     private String number;
+    private String registerId;
 
     @Builder
     public OAuthAttributes(Map<String, Object> attributes,
-                           String nameAttributeKey, String googleId, String naverId, String name, String number) {
+                           String nameAttributeKey, String googleId, String naverId, String name, String number, String registerId) {
 
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
@@ -26,6 +27,7 @@ public class OAuthAttributes {
         this.naverId = naverId;
         this.name = name;
         this.number = number;
+        this.registerId = registerId;
     }
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes){
@@ -38,13 +40,15 @@ public class OAuthAttributes {
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
 
-        return OAuthAttributes.builder()
-                .naverId((String)response.get("email"))
+        OAuthAttributes oAuthAttributes = OAuthAttributes.builder()
+                .naverId((String) response.get("email"))
                 .name((String) response.get("name"))
+                .registerId("naver")
                 .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
 
+        return oAuthAttributes;
     }
 
     private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
@@ -53,6 +57,7 @@ public class OAuthAttributes {
                 .googleId((String)attributes.get("email"))
                 .name((String) attributes.get("name"))
                 .attributes(attributes)
+                .registerId("google")
                 .nameAttributeKey(userNameAttributeName)
                 .build();
     }
@@ -62,6 +67,7 @@ public class OAuthAttributes {
                 .name(name)
                 .naverId(naverId)
                 .googleId(googleId)
+                .registerId(registerId)
                 .number(number)
                 .role(Role.GUEST)
                 .build();

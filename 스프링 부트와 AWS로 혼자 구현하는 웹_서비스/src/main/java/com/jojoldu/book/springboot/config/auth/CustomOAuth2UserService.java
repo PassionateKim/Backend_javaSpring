@@ -14,8 +14,11 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -38,10 +41,36 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         httpSession.setAttribute("user", new SessionUser(user));
 
+
+        /**
+         * registerId 넣는 로직
+         */
+        Map<String, Object> newAttributes = makeNewAttributes(oAuth2User, registrationId);
+
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),
-                attributes.getAttributes(),
+                newAttributes,
                 attributes.getNameAttributeKey());
+    }
+
+    private Map<String, Object> makeNewAttributes(OAuth2User oAuth2User, String registrationId) {
+        Map<String, Object> newAttributes = new HashMap<>();
+        Map<String, Object> oAuthAttributes = oAuth2User.getAttributes();
+
+        if(registrationId.equals("naver")) {
+            Map<String, Object> response = (Map<String, Object>)oAuthAttributes.get("response");
+            for (String s : response.keySet()) {
+                newAttributes.put(s, response.get(s));
+            }
+        }
+        else{
+            for (String s : oAuthAttributes.keySet()) {
+                newAttributes.put(s, oAuthAttributes.get(s));
+            }
+        }
+
+        newAttributes.put("registerId", registrationId);
+        return newAttributes;
     }
 
     private User saveOrUpdate(OAuthAttributes attributes) {
@@ -49,7 +78,6 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         User user = userRepository.findByName(attributes.getName())
                 .map(entity -> entity.update(attributes.getName()))
                 .orElse(attributes.toEntity());
-
 
         return userRepository.save(user);
     }

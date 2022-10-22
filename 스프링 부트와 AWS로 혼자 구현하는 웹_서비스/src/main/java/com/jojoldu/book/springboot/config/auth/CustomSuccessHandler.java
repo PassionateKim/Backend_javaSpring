@@ -16,11 +16,11 @@ import java.util.Map;
 public class CustomSuccessHandler implements AuthenticationSuccessHandler  {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        System.out.println("로그인 성공!!");
+
         DefaultOAuth2User loginUser = (DefaultOAuth2User)authentication.getPrincipal();
         Map<String, Object> attributes = loginUser.getAttributes();
-        for (String s : attributes.keySet()) {
-            System.out.println(s + " = " + attributes.get(s));
-        }
+
+        //redirect하는 방법
+        response.sendRedirect("/");
     }
 }
