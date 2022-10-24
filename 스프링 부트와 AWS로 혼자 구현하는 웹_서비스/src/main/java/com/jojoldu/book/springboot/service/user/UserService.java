@@ -21,8 +21,9 @@ public class UserService {
     @Transactional
     public Long join(SessionUser sessionUser) {
         /* 암호화 */
-        sessionUser.encodePassword(encoder.encode(sessionUser.getPassword()));
-
+        if (sessionUser.getPassword() != null) {
+            sessionUser.encodePassword(encoder.encode(sessionUser.getPassword()));
+        }
 
         return userRepository.save(sessionUser.toEntity()).getId();
     }

@@ -13,6 +13,7 @@ public class SessionUser implements Serializable {
     private String name;
     private String naverId;
     private String googleId;
+    private String email;
     private String password;
     private String registerId;
     private String number;
@@ -26,6 +27,7 @@ public class SessionUser implements Serializable {
         this.name = user.getName();
         this.password = user.getPassword();
         this.naverId = user.getNaverId();
+        this.email = user.getEmail();
         this.registerId = user.getRegisterId();
         this.googleId = user.getGoogleId();
         this.number = user.getNumber();
@@ -42,6 +44,7 @@ public class SessionUser implements Serializable {
                 .googleId(googleId)
                 .password(password)
                 .registerId(registerId)
+                .email(email)
                 .number(number)
                 .role(Role.GUEST)
                 .build();

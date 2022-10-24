@@ -20,6 +20,8 @@ public class UserController {
 
     @PostMapping("/users/new")
     public String signUp(SessionUser sessionUser) {
+
+
         userService.join(sessionUser);
 
         return "redirect:/";

@@ -24,6 +24,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler  {
         //email 받기
         String email = (String) attributes.get("email");
         request.getSession().setAttribute("email", email);
+
         response.sendRedirect("/snsLogin");
     }
 }
