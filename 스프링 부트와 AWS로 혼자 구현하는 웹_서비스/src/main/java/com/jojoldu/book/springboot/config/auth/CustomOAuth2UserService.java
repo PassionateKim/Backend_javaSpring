@@ -24,7 +24,6 @@ import java.util.Map;
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
     private final UserRepository userRepository;
-    private final HttpSession httpSession;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -37,15 +36,14 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
-        User user = saveOrUpdate(attributes);
-
-        httpSession.setAttribute("user", new SessionUser(user));
-
 
         /**
          * registerId 넣는 로직
          */
         Map<String, Object> newAttributes = makeNewAttributes(oAuth2User, registrationId);
+
+        User user = saveOrUpdate(attributes);
+
 
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),
@@ -68,14 +66,13 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 newAttributes.put(s, oAuthAttributes.get(s));
             }
         }
-
-        newAttributes.put("registerId", registrationId);
+        newAttributes.put("oauth", "oauth");
         return newAttributes;
     }
 
     private User saveOrUpdate(OAuthAttributes attributes) {
 
-        User user = userRepository.findByName(attributes.getName())
+        User user = userRepository.findByEmail(attributes.getEmail())
                 .map(entity -> entity.update(attributes.getName()))
                 .orElse(attributes.toEntity());
 

@@ -16,7 +16,6 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
-    private final HttpSession httpSession;
 
     @Transactional
     public Long join(SessionUser sessionUser) {

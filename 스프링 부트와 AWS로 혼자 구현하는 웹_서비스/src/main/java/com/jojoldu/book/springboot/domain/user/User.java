@@ -20,14 +20,7 @@ public class User extends BaseTimeEntity {
     private String name;
 
     @Column
-    private String naverId;
-
-    @Column
-    private String googleId;
-
-    @Column
-    private String registerId;
-
+    private String oauth;
 
     @Column
     private String email;
@@ -35,25 +28,18 @@ public class User extends BaseTimeEntity {
     @Column
     private String password;
 
-    @Column
-    private String number;
-
-
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
     @Builder
-    public User(String name, String naverId, String googleId, String email, Role role, String password, String number, String registerId) {
+    public User(String name, String oauth, String email, Role role, String password) {
         this.name = name;
-        this.naverId = naverId;
-        this.googleId = googleId;
         this.email = email;
+        this.oauth = oauth;
         this.role = role;
         this.password = password;
-        this.registerId = registerId;
-        this.number = number;
     }
 
     public User update(String name) {

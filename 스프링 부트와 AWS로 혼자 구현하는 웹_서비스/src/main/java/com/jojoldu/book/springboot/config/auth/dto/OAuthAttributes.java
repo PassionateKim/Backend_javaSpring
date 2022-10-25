@@ -11,23 +11,21 @@ import java.util.Map;
 public class OAuthAttributes {
     private Map<String, Object> attributes;
     private String nameAttributeKey;
-    private String googleId;
-    private String naverId;
+    private String email;
     private String name;
     private String number;
-    private String registerId;
+    private String oauth;
 
     @Builder
     public OAuthAttributes(Map<String, Object> attributes,
-                           String nameAttributeKey, String googleId, String naverId, String name, String number, String registerId) {
+                           String nameAttributeKey, String email, String name, String number, String oauth) {
 
         this.attributes = attributes;
+        this.email = email;
         this.nameAttributeKey = nameAttributeKey;
-        this.googleId = googleId;
-        this.naverId = naverId;
         this.name = name;
         this.number = number;
-        this.registerId = registerId;
+        this.oauth = oauth;
     }
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes){
@@ -41,9 +39,9 @@ public class OAuthAttributes {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
 
         OAuthAttributes oAuthAttributes = OAuthAttributes.builder()
-                .naverId((String) response.get("email"))
+                .email((String) response.get("email"))
                 .name((String) response.get("name"))
-                .registerId("naver")
+                .oauth("oauth")
                 .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
@@ -54,10 +52,10 @@ public class OAuthAttributes {
     private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
 
         return OAuthAttributes.builder()
-                .googleId((String)attributes.get("email"))
+                .email((String)attributes.get("email"))
                 .name((String) attributes.get("name"))
                 .attributes(attributes)
-                .registerId("google")
+                .oauth("oauth")
                 .nameAttributeKey(userNameAttributeName)
                 .build();
     }
@@ -65,10 +63,8 @@ public class OAuthAttributes {
     public User toEntity() {
         return User.builder()
                 .name(name)
-                .naverId(naverId)
-                .googleId(googleId)
-                .registerId(registerId)
-                .number(number)
+                .email(email)
+                .oauth(oauth)
                 .role(Role.GUEST)
                 .build();
     }

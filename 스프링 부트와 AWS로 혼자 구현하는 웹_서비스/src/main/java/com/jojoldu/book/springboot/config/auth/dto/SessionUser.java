@@ -11,12 +11,9 @@ import java.io.Serializable;
 @Data
 public class SessionUser implements Serializable {
     private String name;
-    private String naverId;
-    private String googleId;
     private String email;
     private String password;
-    private String registerId;
-    private String number;
+    private String oauth;
 
 
     public SessionUser() {
@@ -26,11 +23,8 @@ public class SessionUser implements Serializable {
     public SessionUser(User user) {
         this.name = user.getName();
         this.password = user.getPassword();
-        this.naverId = user.getNaverId();
         this.email = user.getEmail();
-        this.registerId = user.getRegisterId();
-        this.googleId = user.getGoogleId();
-        this.number = user.getNumber();
+        this.oauth = user.getOauth();
     }
 
     public void encodePassword(String encode) {
@@ -40,12 +34,9 @@ public class SessionUser implements Serializable {
     public User toEntity() {
         return User.builder()
                 .name(name)
-                .naverId(naverId)
-                .googleId(googleId)
                 .password(password)
-                .registerId(registerId)
+                .oauth(oauth)
                 .email(email)
-                .number(number)
                 .role(Role.GUEST)
                 .build();
     }
