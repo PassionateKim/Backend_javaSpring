@@ -45,7 +45,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler  {
         else {
             request.getSession().setAttribute("email", email);
             request.getSession().setAttribute("oauth", oauth);
-            response.sendRedirect("/snsLogin");
+            response.sendRedirect("/snsSignUp");
         }
 
     }
