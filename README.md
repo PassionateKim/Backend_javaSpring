@@ -12,3 +12,5 @@
 * **ThymeLeaf**
   * 기타
   * [JPA 대신 ThymeLeaf를 사용해야 하는 이유](https://abcdefgh123123.tistory.com/480)
+* **AWS**
+  * [aws관련 정리 레포](https://github.com/SteadyKim/Backend/tree/master/aws)
