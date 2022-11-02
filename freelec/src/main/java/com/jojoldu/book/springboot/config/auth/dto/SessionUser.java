@@ -5,12 +5,15 @@ import com.jojoldu.book.springboot.domain.user.User;
 import lombok.Data;
 import lombok.Getter;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Getter
 @Data
 public class SessionUser implements Serializable {
     private String name;
+
+    @NotEmpty(message = "이메일을 입력해야합니다.")
     private String email;
     private String password;
     private String oauth;
