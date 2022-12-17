@@ -4,3 +4,4 @@
 * [RDS 인스턴스 생성하기](https://abcdefgh123123.tistory.com/512)
 * [RDS 인스턴스와 EC2 연결하기](https://abcdefgh123123.tistory.com/513)
 * [EC2에 도메인 설정하기](https://abcdefgh123123.tistory.com/515)
+* [EC2에 CloudFront와 도메인 연결하기](https://abcdefgh123123.tistory.com/516)
