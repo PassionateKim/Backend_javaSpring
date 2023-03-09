@@ -15,5 +15,4 @@ public class AConnectionMaker implements ConnectionMaker {
 
         return connection;
     }
-    ;
 }
