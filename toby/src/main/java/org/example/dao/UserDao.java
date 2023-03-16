@@ -12,7 +12,7 @@ public class UserDao {
     public void add(User user) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection c = connectionMaker.getConnection();
-
+        System.out.println("UserDao add()");
         PreparedStatement ps = c.prepareStatement("insert into  users(id, name, password) values(?,?,?)");
         ps.setString(1, user.getId());
         ps.setString(2, user.getName());
@@ -24,6 +24,28 @@ public class UserDao {
         c.close();
     }
 
+    public void deleteAll() throws SQLException, ClassNotFoundException {
+        Connection c = connectionMaker.getConnection();
+        PreparedStatement ps = c.prepareStatement("delete from users");
+        System.out.println("UserDao deleteAll()");
+        ps.executeUpdate();
+        ps.close();
+        c.close();
+    }
+
+    public int getCount() throws SQLException, ClassNotFoundException {
+        Connection c = connectionMaker.getConnection();
+        PreparedStatement ps = c.prepareStatement("select count(*) from users");
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        int count = rs.getInt(1);
+
+        rs.close();
+        ps.close();
+        c.close();
+
+        return count;
+    }
     public User get(String id) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection c = connectionMaker.getConnection();
