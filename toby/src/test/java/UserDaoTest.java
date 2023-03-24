@@ -1,31 +1,34 @@
-package test;
-
+import org.example.TobyApplication;
 import org.example.dao.DaoFactory;
 import org.example.dao.UserDao;
 import org.example.domain.User;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.SQLException;
 
 import static org.junit.Assert.*;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = TobyApplication.class)
 public class UserDaoTest {
-
+    @Autowired
     private UserDao userDao;
 
-    @Before
-    public void setUp(){
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
-        this.userDao = context.getBean("userDao", UserDao.class);
-    }
-
+//    @Before
+//    public void setUp(){
+//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
+//        this.userDao = context.getBean("userDao", UserDao.class);
+//    }
     @Test
     public void addAndGet() throws ClassNotFoundException, SQLException {
-
         userDao.deleteAll();
         assertEquals(userDao.getCount(), 0);
 
@@ -59,7 +62,6 @@ public class UserDaoTest {
         userDao.get("unknown");
     }
 
-
     @Test
     public void count() throws ClassNotFoundException, SQLException {
         userDao.deleteAll();
@@ -89,7 +91,6 @@ public class UserDaoTest {
 
         userDao.add(user3);
         assertEquals(userDao.getCount(), 3);
-
 
     }
 }

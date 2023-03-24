@@ -1,14 +1,19 @@
 package org.example.dao;
 
 import org.example.domain.User;
+import org.junit.runner.RunWith;
+import org.springframework.context.annotation.Bean;
 
 import java.sql.*;
-
 public class UserDao {
     private ConnectionMaker connectionMaker;
     public UserDao(ConnectionMaker connectionMaker) {
         this.connectionMaker = connectionMaker;
     }
+
+    public UserDao() {
+    }
+
     public void add(User user) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection c = connectionMaker.getConnection();
