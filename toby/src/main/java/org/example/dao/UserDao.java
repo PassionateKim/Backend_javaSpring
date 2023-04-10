@@ -1,6 +1,5 @@
 package org.example.dao;
 
-import org.example.dao.strategy.AddStatement;
 import org.example.dao.strategy.DeleteAllStatement;
 import org.example.dao.strategy.StatementStrategy;
 import org.example.domain.User;
@@ -15,16 +14,26 @@ public class UserDao {
     public UserDao() {
     }
 
-    public void add(User user) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection c = connectionMaker.getConnection();
+    public void add(final User user) throws ClassNotFoundException, SQLException {
+
+        // 로컬 클래스로 만들기
+        class AddStatement implements StatementStrategy {
+            @Override
+            public PreparedStatement makePreparedStatement(Connection c) throws SQLException {
+                PreparedStatement ps = c.prepareStatement("insert into users(id, name, password) values (?,?,?)");
+                ps.setString(1, user.getId());
+                ps.setString(2, user.getName());
+                ps.setString(3, user.getPassword());
+                return ps;
+            }
+        }
         System.out.println("UserDao add()");
 
-        AddStatement st = new AddStatement(user);
+        AddStatement st = new AddStatement();
         jdbcContextWithStatementStrategy(st);
     }
 
-    //Delete가 Client 역할을 하고 Context, Strategy를 나눈 코드
+    //deleteAll()이 Client 역할을 하고 Context, Strategy를 나눈 코드
     public void deleteAll() throws SQLException, ClassNotFoundException {
             StatementStrategy strategy = new DeleteAllStatement();
             jdbcContextWithStatementStrategy(strategy);
