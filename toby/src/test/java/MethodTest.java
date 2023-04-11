@@ -26,6 +26,7 @@ public class MethodTest {
 
     @Before
     public void init() throws ClassNotFoundException, SQLException {
+        System.out.println("UserDao deleteAll()");
         userDao.deleteAll();
     }
 
